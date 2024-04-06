@@ -1,5 +1,6 @@
 {
-  "name": "my-app",
+  "name": "next-shadcn-teams",
+  "author": "guillaumeduhan",
   "version": "0.1.0",
   "private": true,
   "scripts": {
