@@ -11,13 +11,13 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useState } from "react"
-import { SelectRole } from "./SelectRole"
+import { Roles } from "./Options/Roles"
 
 export default function NewMember() {
   const [member, setMember] = useState({
     name: "",
     email: "",
-    role: "Member"
+    role: "member"
   })
   return (
     <Dialog>
@@ -30,7 +30,7 @@ export default function NewMember() {
         <DialogHeader>
           <DialogTitle>Add a new member</DialogTitle>
           <DialogDescription>
-            Please enter name and email of member. Click save when you're done.
+            Please enter name and email of member. Click save when you&apos;re done.
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
@@ -60,7 +60,7 @@ export default function NewMember() {
             <Label htmlFor="username" className="text-right">
               Select role
             </Label>
-            <SelectRole
+            <Roles
               selected={member.role}
               setSelected={(v: string) => {
                 setMember((prev: any) => ({ ...prev, role: v }))

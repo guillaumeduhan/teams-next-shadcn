@@ -8,13 +8,26 @@ import NewMember from "./Members/New";
 export default function Team() {
   const [members, setMembers] = useState<any>([
     {
+      name: "Aurélia Duhan",
+      email: "aurelia@gmail.com",
+      role: "admin",
+      status: "active"
+    },
+    {
       name: "Guillaume Duhan",
       email: "codewithguillaume@gmail.com",
-      role: "Admin",
+      role: "manager",
+      status: "pending"
+    },
+    {
+      name: "Kingsley Advani",
+      email: "kingsley@gmail.com",
+      role: "member",
+      status: "archived"
     }
   ])
 
-  return <div className="grid gap-6 border rounded-lg shadow px-5 py-4">
+  return <div className="grid gap-6 border rounded-lg shadow px-5 py-4 w-full max-w-[800px]">
     <header className="flex items-start justify-between">
       <div className="grid gap-1">
         <h1 className="text-2xl">Team</h1>

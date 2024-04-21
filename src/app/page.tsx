@@ -2,7 +2,7 @@
 import Teams from '@/components/Team';
 
 export default function Home() {
-  return <div className='flex m-4'>
+  return <div className='flex items-center justify-center m-4'>
     <Teams />
   </div>;
 }

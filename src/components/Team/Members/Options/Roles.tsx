@@ -9,17 +9,17 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-export function SelectRole({
-  selected,
+export function Roles({
+  selected = 'member',
   setSelected
 }: {
   selected?: string;
   setSelected?: (value: string) => void;
 }) {
   const roles = [
-    "Admin",
-    "Manager",
-    "Member"
+    "admin",
+    "manager",
+    "member"
   ]
   return (
     <Select defaultValue={selected} onValueChange={setSelected}>
@@ -29,7 +29,7 @@ export function SelectRole({
       <SelectContent>
         <SelectGroup>
           <SelectLabel>Roles</SelectLabel>
-          {roles.map(role => <SelectItem value={role}>{role}</SelectItem>)}
+          {roles.map(role => <SelectItem key={role} className="capitalize" value={role}>{role}</SelectItem>)}
         </SelectGroup>
       </SelectContent>
     </Select>
