@@ -44,19 +44,18 @@ export const columns: ColumnDef<Payment>[] = [
       const status: string = row.getValue("status")
       switch (status) {
         case "pending":
-          return <Badge className="capitalize bg-orange-50 text-orange-900">Pending</Badge>
+          return <Badge className="hover:bg-transparent capitalize bg-orange-50 text-orange-900">Pending</Badge>
         case "active":
-          return <Badge className="capitalize bg-green-50 text-green-900">Active</Badge>
+          return <Badge className="hover:bg-transparent capitalize bg-green-50 text-green-900">Active</Badge>
         case "archived":
-          return <Badge className="capitalize bg-red-50 text-red-900">Archived</Badge>
+          return <Badge className="hover:bg-transparent capitalize bg-red-50 text-red-900">Archived</Badge>
         default:
           return <Badge className="capitalize bg-neutral-100 text-neutral-600">Unknown</Badge>
       }
     }
   },
   {
-    accessorKey: "",
-    header: "_",
+    id: "actions",
     cell: ({ row }) => {
       return <div className="flex justify-end">
         <Options />

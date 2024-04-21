@@ -18,17 +18,17 @@ export default function Options() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <EllipsisVertical className="text-base cursor-pointer" />
+        <EllipsisVertical className="w-4 cursor-pointer" />
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
         <DropdownMenuGroup>
           <DropdownMenuItem className="cursor-pointer flex gap-2">
             <Shield className="w-4" />
-            <span>Role</span>
+            <span>Set role</span>
           </DropdownMenuItem>
           <DropdownMenuItem className="cursor-pointer flex gap-2">
             <MailPlus className="w-4" />
-            <span>Send invitation</span>
+            <span>Resend invitation</span>
           </DropdownMenuItem>
           <DropdownMenuItem className="cursor-pointer flex gap-2">
             <CircleX className="w-4" />
