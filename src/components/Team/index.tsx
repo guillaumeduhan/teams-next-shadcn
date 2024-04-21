@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { DataTable } from "../Datatable";
 import { columns } from "./Members/Columns";
-import NewMember from "./Members/New";
+import New from "./New";
 
 export default function Team() {
   const [members, setMembers] = useState<any>([
@@ -33,7 +33,7 @@ export default function Team() {
         <h1 className="text-2xl">Team</h1>
         <p>Invite new members in your team.</p>
       </div>
-      <NewMember />
+      <New />
     </header>
     <main>
       <DataTable columns={columns} data={members} />

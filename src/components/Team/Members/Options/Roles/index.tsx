@@ -9,7 +9,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-export function Roles({
+export default function Roles({
   selected = 'member',
   setSelected
 }: {
