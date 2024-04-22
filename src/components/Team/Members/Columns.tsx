@@ -47,8 +47,8 @@ export const columns: ColumnDef<Payment>[] = [
           return <Badge className="hover:bg-transparent capitalize bg-orange-50 text-orange-900">Pending</Badge>
         case "active":
           return <Badge className="hover:bg-transparent capitalize bg-green-50 text-green-900">Active</Badge>
-        case "archived":
-          return <Badge className="hover:bg-transparent capitalize bg-red-50 text-red-900">Archived</Badge>
+        case "removed":
+          return <Badge className="hover:bg-transparent capitalize bg-red-50 text-red-900">Removed</Badge>
         default:
           return <Badge className="capitalize bg-neutral-100 text-neutral-600">Unknown</Badge>
       }
@@ -57,8 +57,9 @@ export const columns: ColumnDef<Payment>[] = [
   {
     id: "actions",
     cell: ({ row }) => {
+      const user = row.original;
       return <div className="flex justify-end">
-        <Options />
+        <Options {...{ user }} />
       </div>
     }
   },

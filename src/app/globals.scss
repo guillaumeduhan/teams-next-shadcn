@@ -83,8 +83,9 @@
   }
   input,
   select,
-  div {
-    @apply outline-none focus:ring-0;
+  div,
+  button {
+    @apply outline-none focus-visible:ring-0 ring-0 ring-offset-0 focus:ring-0 focus:ring-offset-0 #{!important};
   }
   p {
     @apply text-neutral-500;

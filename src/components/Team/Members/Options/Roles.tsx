@@ -22,14 +22,14 @@ export default function Roles({
     "member"
   ]
   return (
-    <Select defaultValue={selected} onValueChange={setSelected}>
-      <SelectTrigger className="w-[240px]">
+    <Select defaultValue={selected} onValueChange={setSelected} >
+      <SelectTrigger className="w-[240px] capitalize">
         <SelectValue placeholder="Select a role" />
       </SelectTrigger>
-      <SelectContent>
+      <SelectContent >
         <SelectGroup>
           <SelectLabel>Roles</SelectLabel>
-          {roles.map(role => <SelectItem key={role} className="capitalize" value={role}>{role}</SelectItem>)}
+          {roles.map(role => <SelectItem key={role} value={role}>{role}</SelectItem>)}
         </SelectGroup>
       </SelectContent>
     </Select>

@@ -23,7 +23,7 @@ export default function Team() {
       name: "Kingsley Advani",
       email: "kingsley@gmail.com",
       role: "member",
-      status: "archived"
+      status: "removed"
     }
   ])
 

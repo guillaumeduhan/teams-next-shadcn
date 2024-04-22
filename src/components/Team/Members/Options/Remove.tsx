@@ -7,11 +7,11 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle
-} from "@/components/ui/alert-dialog"
+} from "@/components/ui/alert-dialog";
 
-export default function Remove() {
+export default function Remove({ open, setOpen }: any) {
   return (
-    <AlertDialog>
+    <AlertDialog open={open}>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
@@ -20,7 +20,9 @@ export default function Remove() {
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogCancel onClick={() => setOpen(false)} className="bg-red-500 text-white">
+            Cancel
+          </AlertDialogCancel>
           <AlertDialogAction>Confirm</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
