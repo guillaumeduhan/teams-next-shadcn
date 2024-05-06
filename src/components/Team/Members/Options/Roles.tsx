@@ -20,16 +20,16 @@ export default function Roles({
     "admin",
     "manager",
     "member"
-  ]
+  ];
   return (
     <Select defaultValue={selected} onValueChange={setSelected} >
-      <SelectTrigger className="w-[240px] capitalize">
+      <SelectTrigger className="w-full capitalize">
         <SelectValue placeholder="Select a role" />
       </SelectTrigger>
       <SelectContent >
         <SelectGroup>
           <SelectLabel>Roles</SelectLabel>
-          {roles.map(role => <SelectItem key={role} value={role}>{role}</SelectItem>)}
+          {roles.map(role => <SelectItem className="capitalize" key={role} value={role}>{role}</SelectItem>)}
         </SelectGroup>
       </SelectContent>
     </Select>

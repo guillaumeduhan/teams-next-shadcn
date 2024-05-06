@@ -1,24 +1,20 @@
 "use client"
 
 import { Badge } from "@/components/ui/badge"
+import { useHelpers } from "@/hooks/useHelpers"
 import { ColumnDef } from "@tanstack/react-table"
 import Options from "./Options"
+import Roles from "./Options/Roles"
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
-export type Payment = {
-  id: string
-  amount: number
-  status: "pending" | "processing" | "success" | "failed"
-  email: string
-}
 
-export const columns: ColumnDef<Payment>[] = [
+export const columns: ColumnDef<any>[] = [
   {
     accessorKey: "name",
     header: "Name",
     cell: ({ row }) => {
-      const name: string = row.getValue("name")
+      const name: string = row.getValue("name");
       const email: string = row.original.email;
       return <div className="flex items-center gap-2">
         <div className="flex items-center justify-center bg-black text-white font-bold capitalize w-8 h-8 rounded-full">{name[0]}</div>
@@ -33,8 +29,24 @@ export const columns: ColumnDef<Payment>[] = [
     accessorKey: "role",
     header: "Role",
     cell: ({ row }) => {
-      const role: string = row.getValue("role")
-      return <span className="text-sm text-neutral-500 capitalize">{role}</span>
+      const { open, setOpen, loading, setLoading } = useHelpers();
+      const role: string = row.getValue("role");
+
+      const onRoleChanged = (v: string) => {
+        try {
+          setLoading(true);
+          alert(v);
+        } catch (error: any) {
+          throw new Error(error);
+        } finally {
+          setOpen(false);
+          setLoading(false);
+        }
+      }
+      return <div onClick={() => setOpen(!open)} className="w-[120px]">
+        {!open && <span className="text-sm text-neutral-500 capitalize">{role}</span>}
+        {open && <Roles {...{ selected: role }} setSelected={(v) => onRoleChanged(v)} />}
+      </div>
     }
   },
   {
