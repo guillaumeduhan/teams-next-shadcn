@@ -1,9 +1,11 @@
 
 import { Badge } from "@/components/ui/badge";
 import { useHelpers } from "@/hooks/useHelpers";
+import { supabase } from "@/lib/supabase";
 import { ColumnDef } from "@tanstack/react-table";
-import Roles from "./Options/Roles";
+import { toast } from "sonner";
 import Options from "./Options";
+import Roles from "./Options/Roles";
 
 export const columns: ColumnDef<any>[] = [
   {
@@ -26,18 +28,29 @@ export const columns: ColumnDef<any>[] = [
     cell: ({ row }) => {
       const { open, setOpen, loading, setLoading } = useHelpers();
       const role: string = row.getValue("role");
+      const id: string = row.original.id;
 
-      const onRoleChanged = (v: string) => {
+      const onRoleChanged = async (v: string) => {
         try {
           setLoading(true);
-          alert(v);
+          const { data, error } = await supabase
+            .from('team_members')
+            .update({
+              role: v
+            })
+            .eq("id", id)
+            .select('*');
+
+          if (data) {
+            toast.success("Role updated successfully")
+          }
         } catch (error: any) {
           throw new Error(error);
         } finally {
           setOpen(false);
           setLoading(false);
         }
-      }
+      };
 
       return <div onClick={() => setOpen(!open)} className="w-[120px]">
         {!open && <span className="text-sm text-neutral-500 capitalize">{role}</span>}

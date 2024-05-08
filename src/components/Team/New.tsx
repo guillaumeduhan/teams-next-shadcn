@@ -11,11 +11,13 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useHelpers } from "@/hooks/useHelpers"
+import { supabase } from "@/lib/supabase"
 import { useState } from "react"
+import { toast } from "sonner"
 import CustomButton from "../CustomButton"
 import Roles from "./Members/Options/Roles"
 
-export default function NewMember() {
+export default function NewMember({ team_id }: { team_id: string }) {
   const { open, setOpen, loading, setLoading } = useHelpers();
   const [member, setMember] = useState({
     name: "",
@@ -23,9 +25,17 @@ export default function NewMember() {
     role: "member"
   });
 
-  const sendInvitation = async () => {
+  const saveMember = async () => {
     try {
       setLoading(true);
+      const { data, error } = await supabase
+        .from('team_members')
+        .insert({ ...member, team_id })
+        .select();
+
+      if (data) {
+        toast.success("Team members successfully added.")
+      }
     } catch (error: any) {
       throw new Error(error);
     } finally {
@@ -58,6 +68,8 @@ export default function NewMember() {
               placeholder="John Doe"
               defaultValue={member.name}
               className="col-span-3"
+              onChange={(e: any) =>
+                setMember((prev: any) => ({ ...prev, name: e.target.value }))}
             />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
@@ -69,6 +81,8 @@ export default function NewMember() {
               defaultValue={member.email}
               placeholder="johndoe@gmail.com"
               className="col-span-3"
+              onChange={(e: any) =>
+                setMember((prev: any) => ({ ...prev, email: e.target.value }))}
             />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
@@ -86,7 +100,7 @@ export default function NewMember() {
           </div>
         </div>
         <DialogFooter>
-          <CustomButton {...{ label: "Send invitation", loading, onClick: sendInvitation }} />
+          <CustomButton {...{ label: "Send invitation", loading, onClick: saveMember }} />
         </DialogFooter>
       </DialogContent>
     </Dialog>
